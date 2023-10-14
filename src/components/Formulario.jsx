@@ -1,38 +1,56 @@
 import { useState } from 'react';
 
-import { FormRegistro } from "./FormRegistro";
+
+import { Navigate, useNavigate } from 'react-router-dom'
 
 // Importacion header y footer
 import { Header } from './Header';
 import { Footer } from './Footer';
 
+import { NavLink } from "react-router-dom";
+import { ProtectedRouter } from './ProtectedRouter';
+// import { ProtectedRouter } from './ProtectedRouter';
 
-export function Formulario({ setUser }) {
+
+export function Formulario( ) {
   // const [count, setCount] = useState(0)
   const [nombre, setNombre] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  // const [authForm, setAuthForm] = useState(false)
+  const navigate = useNavigate();
 
+ 
   const handleSubmit = e => {
     e.preventDefault();
-    if (nombre === '' || password === '') {
+    if (nombre === '' && password === '') {
+      
+      // navigate('/');
       setError(true);
+      // setAuthForm(false);
       return;
     }
-    setUser([nombre]);
-  }
+    setError(false)
+    navigate('dashboard');
+    // setUser([nombre]);
+    // setAuthForm(true);
 
+  }
+  
   return (
     <>
+     
+      
       < Header />
       <div className='form-box'>
-        <fieldset>
-          <legend className='text-center'>Iniciar Sesion</legend>        
-          <form 
+      <form 
             className='formulario' 
             onSubmit={ handleSubmit }
-          >
-            <div>
+      >
+        <fieldset>
+          <legend className='text-center'>Iniciar Sesion</legend>        
+          
+            <div className='campo'>
               <input 
                 type="text" 
                 placeholder="Correo Electronico"
@@ -40,7 +58,7 @@ export function Formulario({ setUser }) {
                 onChange={e => setNombre(e.target.value)}
               />
             </div>
-            <div>
+            <div className='campo'>
               <input 
                 type="password" 
                 placeholder="Contrasenia"
@@ -48,18 +66,20 @@ export function Formulario({ setUser }) {
                 onChange={ e => setPassword(e.target.value)}
               />
             </div>
-            <div>
-              <button className='btn'>Ingresar</button>
+            
+        </fieldset>      
+      <div className='text-center'>
+              <button className='btn' onClick={ e => handleSubmit(e) }>Ingresar</button>
             </div>
             <div>
-              <a href="#" onClick={ e => {
-                <FormRegistro />
-              } }>Registrase</a>
+              <NavLink to="registrarse">Registrarse</NavLink>
 
             </div>
-          </form>
-          { error && <p>Todos los campos son obligatorios</p> }
-        </fieldset>      
+          
+          { error && <p className='errores'>Todos los campos son obligatorios</p> }
+          {/* { authForm && < ProtectedRouter authForm={ authForm } />} */}
+          
+      </form>
       </div>
       < Footer />
     </>

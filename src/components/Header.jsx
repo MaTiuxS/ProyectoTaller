@@ -8,8 +8,6 @@ export const Header = () => {
   
   return (
     <>
-
-    
     <header>
         <h1 className="nombre-sitio">Reservas online <span> Hospedaje </span></h1>
     </header>
@@ -21,14 +19,11 @@ export const Header = () => {
             <a href="#">Hospedaje</a>
             <a href="#">Blog</a>
             <a href="#">Galería</a>
-            <a href="#">Contacto</a>
+            
+            <NavLink to="/contacto">Contacto</NavLink>
             <NavLink to="/login">Iniciar Sesion</NavLink>
         </nav>
     </div>
-    <div className="hero"></div>
-
-   
-
     </>
   )
 }

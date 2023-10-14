@@ -1,7 +1,11 @@
-import '../assets/app.css';
+
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { Mainns } from './Mainns';
+import  simple  from '../assets/img/simple.webp';
+import  matrimonial  from '../assets/img/matrimonial.webp';
+import  duplex  from '../assets/img/duplex.webp';
+import { NosotrosHome } from './NosotrosHome';
 
 
 export const Home = ({ user }) => {
@@ -9,29 +13,32 @@ export const Home = ({ user }) => {
   return (
     <>
       < Header /> 
-      < Mainns />
-    <section className="seccion contenedor">
-      <h2>Hospedaje al mejor precio</h2>
-      <div className="contenedor-anuncios">
-        <div className="anuncio">
-          <picture>
-            <source srcset="#" type="image/webp" />
-            <source srcset="#" type="image/jpeg" />
-            <img loading="lazy" src="" alt="anuncio" />
-          </picture>
+      <div className="hero"></div>
+      
+      <section className="seccion contenedor">
+        <h2 className="text-center">Categorias de Hospedaje</h2>
+
+        <div className="listado-categorias">
+            <div className="categoria">
+                <img src={ simple } alt="Imagen Categoría" />
+                <a href="#">Simple</a>
+            </div>
+
+            <div className="categoria">
+                <img src={ matrimonial } alt="Imagen Categoría" />
+                <a href="#">Matrimonial</a>
+            </div>
+
+            <div className="categoria">
+                <img src={ duplex } alt="Imagen Categoría" />
+                <a href="#">Duplex</a>
+            </div>
         </div>
-      </div>
-      <div className="contenido-anuncio">
-        <h3>Matrimonial</h3>
-        <p>Cuarto muy amplio ideal para parejas que les gusta la comodidad, cama matrimonial con ducha individual y jacuzzy</p>
-        <p className="precio">$3000</p>
-        <a href="#" className="#">
-          Ver Propiedad
-        </a>
-      </div>
 
 
-    </section>
+      </section>
+      < NosotrosHome />
+      < Mainns />
       < Footer />
     </>
   )
